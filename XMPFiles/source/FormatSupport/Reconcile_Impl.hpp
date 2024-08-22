@@ -7,9 +7,7 @@
 // All Rights Reserved
 //
 // NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 #include "public/include/XMP_Environment.h"	// ! This must be the first include.
@@ -24,7 +22,10 @@
 // =================================================================================================
 
 typedef XMP_Uns8 MD5_Digest[16];	// ! Should be in MD5.h.
-
+/* Temporary fix for deprecated warning message, will add proper fix later */
+enum {
+  smSystem_Script                = -1,   /* designates system script.*/
+};
 enum {
 	kDigestMissing = -1,	// A partial import is done, existing XMP is left alone.
 	kDigestDiffers =  0,	// A full import is done, existing XMP is deleted or replaced.

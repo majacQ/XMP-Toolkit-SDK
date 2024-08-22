@@ -3,9 +3,7 @@
 // All Rights Reserved.
 //
 // NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 /**
@@ -206,7 +204,7 @@ static void TestOneFile ( const char * fileName )
 	XMP_PacketInfo xmpPacket;
 	std::string    roDump, rwDump;
 	
-	sprintf ( buffer, "Testing %s", fileName );
+	snprintf ( buffer,sizeof(buffer), "Testing %s", fileName );
 	WriteMinorLabel ( sLogFile, buffer );
 	
 	OpenTestFile ( fileName, kXMPFiles_OpenForRead, &xmpMeta, &xmpFile );
@@ -303,18 +301,18 @@ extern "C" int main ( int argc, const char * argv[] )
 		
 		DumpHandlerInfo();
 	
-		TestOneFile ( "../../../testfiles/BlueSquare.ai" );
-		TestOneFile ( "../../../testfiles/BlueSquare.eps" );
-		TestOneFile ( "../../../testfiles/BlueSquare.indd" );
-		TestOneFile ( "../../../testfiles/BlueSquare.jpg" );
-		TestOneFile ( "../../../testfiles/BlueSquare.pdf" );
-		TestOneFile ( "../../../testfiles/BlueSquare.psd" );
-		TestOneFile ( "../../../testfiles/BlueSquare.tif" );
-		TestOneFile ( "../../../testfiles/BlueSquare.avi" );
-		TestOneFile ( "../../../testfiles/BlueSquare.mov" );
-		TestOneFile ( "../../../testfiles/BlueSquare.mp3" );
-		TestOneFile ( "../../../testfiles/BlueSquare.wav" );
-		TestOneFile ( "../../../testfiles/BlueSquare.png" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.ai" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.eps" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.indd" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.jpg" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.pdf" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.psd" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.tif" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.avi" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.mov" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.mp3" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.wav" );
+		TestOneFile ( "../../../../testfiles/BlueSquare.png" );
 
 	} catch ( XMP_Error & excep ) {
 

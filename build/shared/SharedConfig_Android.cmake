@@ -3,9 +3,7 @@
 #// All Rights Reserved.
 #// NOTICE: Adobe permits you to use, modify, and distribute this file in
 #// accordance with the terms of the Adobe license agreement accompanying
-#// it. If you have received this file from a source other than Adobe,
-#// then your use, modification, or distribution of it requires the prior
-#// written permission of Adobe.
+#// it. 
 #// =================================================================================================
 
 # ==============================================================================
@@ -44,7 +42,7 @@ endif()
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COMMON_SHARED_COMPILE_FLAGS} ${${COMPONENT}_EXTRA_C_COMPILE_FLAGS} -Wno-implicit ")
 set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} ${COMMON_SHARED_COMPILE_DEBUG_FLAGS}")
 set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} ${COMMON_SHARED_COMPILE_RELEASE_FLAGS}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMMON_SHARED_COMPILE_FLAGS} ${COMMON_EXTRA_CXX_COMPILE_FLAGS} -mfpu=vfpv3-d16 -Wno-reorder -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMMON_SHARED_COMPILE_FLAGS} ${COMMON_EXTRA_CXX_COMPILE_FLAGS} -mfpu=vfpv3-d16 -Wno-reorder -std=c++17")
 set(CMAKE_CXX_FLAGS_DEBUG " ${COMMON_SHARED_COMPILE_DEBUG_FLAGS}")
 set(CMAKE_CXX_FLAGS_RELEASE " ${COMMON_SHARED_COMPILE_RELEASE_FLAGS} -s")
 set(COMMON_PLATFORM_BEGIN_WHOLE_ARCHIVE "-Wl,--whole-archive")

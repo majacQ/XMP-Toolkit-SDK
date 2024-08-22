@@ -4,9 +4,7 @@
 // All Rights Reserved
 //
 // NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 //
 // This file includes implementation of SVG metadata, according to Scalable Vector Graphics (SVG) 1.1 Specification. 
 // "https://www.w3.org/TR/2003/REC-SVG11-20030114/"
@@ -72,6 +70,7 @@ static XMP_Uns64 DecompressBuffer(XMP_Uns8 * buffer, const XMP_Uns32 ioCount, Ra
 
 	z_stream zipState;
 	memset(&zipState, 0, sizeof(zipState));
+    XMP_Uns32 prev_avail_in = 0;
 
 	// To decompress a gzip format file use windowBits as 16 + MAX_WBITS with inflateInit2
 	int err = inflateInit2(&zipState, 16 + MAX_WBITS);
@@ -88,8 +87,12 @@ static XMP_Uns64 DecompressBuffer(XMP_Uns8 * buffer, const XMP_Uns32 ioCount, Ra
 	while(zipState.avail_in > 0)
 	{
 		XMP_Assert(zipState.avail_out > 0);	// Sanity check for output buffer space. pppp
+        
+        prev_avail_in = zipState.avail_in;
 
 		err = inflate(&zipState, Z_NO_FLUSH);
+        if (prev_avail_in == zipState.avail_in)
+            break;
 		if(err != Z_OK && err != Z_STREAM_END)
 			return 0;
 		if(zipState.avail_out == 0) {
@@ -390,6 +393,8 @@ bool SVG_CheckFormat( XMP_FileFormat format,
 	if ( svgChecker == 0 )
 		return false;
 
+	svgChecker->SetErrorCallback(&parent->errorCallback);
+
 	bool isSVG = false;
 	bool isCompressed = false;
 
@@ -598,7 +603,7 @@ void SVG_MetaHandler::CacheFileData()
 			{
 				XMP_Int64 trailerOffset = svgAdapter->GetPIOffset( "xpacket", 2 );
 				XML_NodePtr trailerNode = metadataNode->GetNamedElement( "", "xpacket", 1 );
-				if ( trailerOffset != -1 || trailerNode != 0 )
+				if (trailerOffset != -1 && trailerNode != 0)
 				{
 					packetLength = 2;								// "<?" = 2
 					packetLength += trailerNode->name.length();		// Node's name
@@ -712,7 +717,8 @@ void SVG_MetaHandler::ProcessTitle( XMP_IO* sourceRef, XMP_IO * destRef, const s
 	}
 	else
 	{
-		char tempStr[1024];
+		char *tempStr = new char[titleOffset.endOffset - titleOffset.startOffset + 1];
+
 		tempStr [titleOffset.endOffset - titleOffset.startOffset] = '\0';
 
 		if(sourceRef != NULL) {
@@ -732,6 +738,8 @@ void SVG_MetaHandler::ProcessTitle( XMP_IO* sourceRef, XMP_IO * destRef, const s
 
 		destRef->Write( value.c_str(), static_cast< int >( value.length() ) );
 		currentOffset = titleOffset.endOffset;
+		delete[] tempStr;
+		tempStr = NULL;
 	}
 }	// SVG_MetaHandler::ProcessTitle
 
@@ -751,7 +759,8 @@ void SVG_MetaHandler::ProcessDescription( XMP_IO* sourceRef, XMP_IO * destRef, c
 	}
 	else
 	{
-		char tempStr[1024];
+		char *tempStr = new char[descOffset.endOffset - descOffset.startOffset + 1];
+
 		tempStr [descOffset.endOffset - descOffset.startOffset] = '\0';
 		if(sourceRef != NULL) {
 			sourceRef->Seek(descOffset.startOffset, kXMP_SeekFromStart);
@@ -768,6 +777,8 @@ void SVG_MetaHandler::ProcessDescription( XMP_IO* sourceRef, XMP_IO * destRef, c
 		}
 		destRef->Write( value.c_str(), static_cast< int >( value.length() ) );
 		currentOffset = descOffset.endOffset;
+		delete[] tempStr;
+		tempStr = NULL;
 	}
 
 }	// SVG_MetaHandler::ProcessDescription

@@ -4,9 +4,7 @@
 // All Rights Reserved
 //
 // NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 #include "PluginManager.h"
@@ -690,7 +688,7 @@ void PluginManager::scanRecursive( const std::string & tempPath, std::vector<std
 
 			StringVec::const_iterator iterFound =
 				std::find_if ( mExtensions.begin(), mExtensions.end(), 
-							   std::bind2nd ( std::equal_to<std::string>(), fileExt ) );
+							   std::bind(std::equal_to<std::string>(), std::placeholders::_1, fileExt));
 
 			if ( iterFound != mExtensions.end() ) {
 
@@ -700,7 +698,7 @@ void PluginManager::scanRecursive( const std::string & tempPath, std::vector<std
 				
 				StringVec::const_iterator pluginNeeded =
 					std::find_if ( mPluginsNeeded.begin(), mPluginsNeeded.end(),
-								   std::bind2nd ( std::equal_to<std::string>(), childName ) );
+								   std::bind(std::equal_to<std::string>(), std::placeholders::_1, childName));
 
 				if ( (pluginNeeded != mPluginsNeeded.end()) || mPluginsNeeded.empty() ) {
 					ioFoundLibs.push_back ( childPath );

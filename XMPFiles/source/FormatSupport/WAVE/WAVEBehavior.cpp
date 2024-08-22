@@ -4,9 +4,7 @@
 // All Rights Reserved
 //
 // NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 #include "public/include/XMP_Environment.h"	// ! XMP_Environment.h must be the first included header.
@@ -610,11 +608,10 @@ bool WAVEBehavior::parseDS64Chunk( const Chunk& ds64Chunk, WAVEBehavior::DS64& d
 		memcpy( &ds64, data, kMinimumDS64ChunkSize );
 
 		// If there is more data but the table length is <= 0 then this is not a valid ds64 chunk
-		if( size > kMinimumDS64ChunkSize && ds64.tableLength > 0 )
+		if (size > kMinimumDS64ChunkSize && ds64.tableLength > 0 && ((size - kMinimumDS64ChunkSize) >= (ds64.tableLength * sizeof(ChunkSize64))))
 		{
 			// copy chunk sizes table
 			//
-			XMP_Assert( size - kMinimumDS64ChunkSize >= ds64.tableLength * sizeof(ChunkSize64));
 
 			XMP_Uns32 offset = kMinimumDS64ChunkSize;
 			ChunkSize64 chunkSize;

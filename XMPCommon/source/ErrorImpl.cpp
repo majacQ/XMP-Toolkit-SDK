@@ -4,9 +4,7 @@
 // All Rights Reserved
 //
 // NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 #define IMPLEMENTATION_HEADERS_CAN_BE_INCLUDED 1
@@ -115,8 +113,9 @@ namespace XMP_COMPONENT_INT_NAMESPACE {
 			UTF8StringStream stm1;
 			stm1.setf( std::ios::hex );
 			stm1 << "0x" << addressParameter;
+			std::string str1 = stm1.str().c_str();
 			if ( stm1.str().size() > 4 ) {
-				const char * charPtr = stm1.str().c_str();
+				const char * charPtr = str1.c_str();
 				if ( charPtr[ 2 ] == '0' && ( charPtr[ 3 ] == 'x' || charPtr[ 3 ] == 'X' ) ) {
 					appends0x = true;
 				}

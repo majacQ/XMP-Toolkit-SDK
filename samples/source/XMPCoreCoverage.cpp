@@ -3,9 +3,7 @@
 // All Rights Reserved.
 //
 // NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 /**
@@ -901,7 +899,7 @@ static void DoXMPCoreCoverage ( FILE * log )
 		fprintf ( log, "\n" );
 
 		for ( i = 1; i < 14; ++i ) {
-			sprintf ( dateName, "Date%d", i );
+			snprintf ( dateName,sizeof(dateName), "Date%d", i );
 			ok = meta.GetProperty_Date ( kNS1, dateName, &dateValue, &options );
 			fprintf ( log, "GetProperty_Date (%s) : %s, %d-%02d-%02d %02d:%02d:%02d %d*%02d:%02d %d, 0x%X\n",  dateName, FoundOrNot ( ok ),
 					  dateValue.year, dateValue.month, dateValue.day, dateValue.hour, dateValue.minute, dateValue.second,

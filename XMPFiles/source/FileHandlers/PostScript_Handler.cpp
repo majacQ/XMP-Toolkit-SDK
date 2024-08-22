@@ -4,9 +4,7 @@
 // All Rights Reserved
 //
 // NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 #include "public/include/XMP_Environment.h"	// ! XMP_Environment.h must be the first included header.
@@ -887,6 +885,7 @@ void PostScript_MetaHandler::ParsePSFile()
 					if (CheckBytes ( ioBuf.ptr, Uns8Ptr("iler"), 4 ))
 					{
 						ioBuf.ptr+=4;
+						if ( !CheckFileSpace( fileRef, &ioBuf, 1 ) ) return;
 						while ( !IsNewline( *ioBuf.ptr ) )
 						{
 							if ( !CheckFileSpace( fileRef, &ioBuf, 1 ) ) return;

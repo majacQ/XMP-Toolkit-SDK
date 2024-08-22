@@ -4,9 +4,7 @@
 // All Rights Reserved
 //
 // NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 #include "public/include/XMP_Environment.h"	// ! XMP_Environment.h must be the first included header.
 #include "public/include/XMP_Const.h"
@@ -238,9 +236,14 @@ namespace PNG_Support
 
 					if (chunkType == iTXt)
 					{
-						ExtractXMPPacket(fileRef, chunkLength, tempBuffer, bufferLimit - tempBuffer, inOutPosition, outXMPPacket, outXmpOffset);
-						processedXMP = true;
-						break;
+						/* There could be multiple iTXt chunks. There should be no more than one
+						 * chunk containing XMP in each PNG file.
+						 */
+						if (ExtractXMPPacket(fileRef, chunkLength, tempBuffer, bufferLimit - tempBuffer, inOutPosition, outXMPPacket, outXmpOffset))
+						{
+						    processedXMP = true;
+						    break;
+						}
 					}
 					else if (chunkType == IEND && isOpenForRead) {
 						/*signifies end of png file. No need to process further.*/

@@ -4,9 +4,7 @@
 // All Rights Reserved
 //
 // NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 #include "public/include/XMP_Environment.h"	// ! XMP_Environment.h must be the first included header.
@@ -854,7 +852,7 @@ void P2_MetaHandler::SetGPSPropertyFromLegacyXML  ( XML_NodePtr legacyLocationCo
 					const double minutes = fractionalDegrees * 60.0;
 					char xmpValue [128];
 
-					sprintf ( xmpValue, "%d,%.5lf%c", static_cast<int>(wholeDegrees), minutes, direction );
+					snprintf ( xmpValue, sizeof(xmpValue), "%d,%.5lf%c", static_cast<int>(wholeDegrees), minutes, direction );
 					this->xmpObj.SetProperty ( kXMP_NS_EXIF, propName, xmpValue );
 					this->containsXMP = true;
 
@@ -904,7 +902,7 @@ void P2_MetaHandler::SetAltitudeFromLegacyXML  ( XML_NodePtr legacyLocationConte
 
 					char xmpValue [128];
 
-					sprintf ( xmpValue, "%d/1", altitude );
+					snprintf ( xmpValue, sizeof(xmpValue), "%d/1", altitude );
 					this->xmpObj.SetProperty ( kXMP_NS_EXIF, "GPSAltitude", xmpValue );
 					this->containsXMP = true;
 

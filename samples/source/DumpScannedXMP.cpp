@@ -3,9 +3,7 @@
 // All Rights Reserved.
 //
 // NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 /**
@@ -71,7 +69,7 @@ ProcessPacket ( const char * fileName,
 	
 	char title [1000];
 	
-	sprintf ( title, "// Dumping raw input for \"%s\" (%zu..%zu)", fileName, offset, (offset + length - 1) );
+	snprintf ( title, sizeof(title),"// Dumping raw input for \"%s\" (%zu..%zu)", fileName, offset, (offset + length - 1) );
 	printf ( "// " );
 	for ( size_t i = 3; i < strlen(title); ++i ) printf ( "=" );
 	printf ( "\n\n%s\n\n%.*s\n\n", title, (int)length, xmlString.c_str() );

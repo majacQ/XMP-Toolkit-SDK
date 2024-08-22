@@ -4,9 +4,7 @@
 // All Rights Reserved
 //
 // NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 #ifndef _H_XMPATOMS
@@ -85,14 +83,7 @@ enum
 
 #define XMPAtomNull emptyStr_K
 
-struct StringCompare : std::binary_function<const std::string &, const std::string &, bool>
-{
-	bool operator() (const std::string & a, const std::string & b) const
-	{
-		return ( a.compare(b) < 0 );
-	}
-};
-typedef std::map<std::string, XMPAtom,			StringCompare>		XMPAtomsMap;
+typedef std::map<std::string, XMPAtom> XMPAtomsMap;
 
 
 /** @class ResourceParser

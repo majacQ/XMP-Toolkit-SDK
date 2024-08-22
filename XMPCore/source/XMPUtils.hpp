@@ -6,9 +6,7 @@
 // All Rights Reserved.
 //
 // NOTICE:	Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 #include "public/include/XMP_Environment.h"
@@ -255,9 +253,6 @@ public:
 
 #if ENABLE_CPP_DOM_MODEL
 	static void MapXMPErrorToIError(XMP_Int32 xmpErrorCodes, AdobeXMPCommon::IError::eErrorDomain & domain, AdobeXMPCommon::IError::eErrorCode & code);
-	static bool SerializeExtensionAsJSON(const AdobeXMPCore::spINode & extensionNode, std::string & key, std::string & value);
-	static bool IsExtensionValidForBackwardCompatibility(const AdobeXMPCore::spINode & extensionNode);
-	static bool CreateExtensionNode(const AdobeXMPCore::spIStructureNode & xmpNode, const XMP_VarString & serializedJSON, const XMP_VarString & doubleQuotesStr);
 
 
 	static void
@@ -297,11 +292,6 @@ public:
 
 #endif
 
-	static bool CreateExtensionNode(XMP_Node ** xmpNode, const XMP_VarString & serializedJSON, const XMP_VarString & doubleQuotesString);
-
-	static bool GetSerializedJSONForExtensionNode(const XMP_Node * xmpNode, XMP_VarString &extensionAsKey, XMP_VarString & serializedJSON);
-
-	static bool IsSuitableForJSONSerialization(const XMP_Node * xmpNode);
 
 };	// XMPUtils
 

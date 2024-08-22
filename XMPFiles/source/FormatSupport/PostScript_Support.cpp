@@ -4,9 +4,7 @@
 // All Rights Reserved
 //
 // NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 #include "XMPFiles/source/FormatSupport/PostScript_Support.hpp"
@@ -1073,12 +1071,12 @@ std::string PostScript_Support::ConvertToDate(const char* inString)
 			{
 				if ( date.containsOffset )
 				{
-					sprintf(dtstr,"%04d-%02d-%02dT%02d:%02d:%02d%c%02d:%02d",date.year,date.month,date.day,
+					snprintf(dtstr,sizeof(dtstr),"%04d-%02d-%02dT%02d:%02d:%02d%c%02d:%02d",date.year,date.month,date.day,
 							date.hours,date.minutes,date.seconds,date.offsetSign,date.offsetHour,date.offsetMin);
 				}
 				else
 				{
-					sprintf(dtstr,"%04d-%02d-%02dT%02d:%02d:%02dZ",date.year,date.month,date.day,
+					snprintf(dtstr,sizeof(dtstr),"%04d-%02d-%02dT%02d:%02d:%02dZ",date.year,date.month,date.day,
 							date.hours,date.minutes,date.seconds);
 				}
 				try

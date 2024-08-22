@@ -7,9 +7,7 @@
 // All Rights Reserved
 //
 // NOTICE: Adobe permits you to use, modify, and distribute this file in accordance with the terms
-// of the Adobe license agreement accompanying it. If you have received this file from a source other 
-// than Adobe, then your use, modification, or distribution of it requires the prior written permission
-// of Adobe.
+// of the Adobe license agreement accompanying it. 
 // =================================================================================================
 
 #include "public/include/XMP_Environment.h"	// ! This must be the first include.
@@ -40,12 +38,48 @@
 
 enum {	// List of recognized items from the QuickTime 'moov'/'udta' box.
 	// These items are defined by Adobe.
-	kQTilst_Reel        = 0xA952454CUL, // '©REL'
-	kQTilst_Timecode    = 0xA954494DUL, // '©TIM'
-	kQTilst_TimeScale   = 0xA9545343UL, // '©TSC'
-	kQTilst_TimeSize    = 0xA954535AUL  // '©TSZ'
+	kQTilst_Reel        = 0xA952454CUL, // 'REL'
+	kQTilst_Timecode    = 0xA954494DUL, // 'TIM'
+	kQTilst_TimeScale   = 0xA9545343UL, // 'TSC'
+	kQTilst_TimeSize    = 0xA954535AUL  // 'TSZ'
 };
 
+enum {
+  ksmRoman                       = 0,
+  ksmJapanese                    = 1,
+  ksmTradChinese                 = 2,    /* Traditional Chinese*/
+  ksmKorean                      = 3,
+  ksmArabic                      = 4,
+  ksmHebrew                      = 5,
+  ksmGreek                       = 6,
+  ksmCyrillic                    = 7,
+  ksmRSymbol                     = 8,    /* Right-left symbol*/
+  ksmDevanagari                  = 9,
+  ksmGurmukhi                    = 10,
+  ksmGujarati                    = 11,
+  ksmOriya                       = 12,
+  ksmBengali                     = 13,
+  ksmTamil                       = 14,
+  ksmTelugu                      = 15,
+  ksmKannada                     = 16,   /* Kannada/Kanarese*/
+  ksmMalayalam                   = 17,
+  ksmSinhalese                   = 18,
+  ksmBurmese                     = 19,
+  ksmKhmer                       = 20,   /* Khmer/Cambodian*/
+  ksmThai                        = 21,
+  ksmLao                         = 22,
+  ksmGeorgian                    = 23,
+  ksmArmenian                    = 24,
+  ksmSimpChinese                 = 25,   /* Simplified Chinese*/
+  ksmTibetan                     = 26,
+  ksmMongolian                   = 27,
+  ksmEthiopic                    = 28,
+  ksmGeez                        = 28,   /* Synonym for ksmEthiopic*/
+  ksmCentralEuroRoman            = 29,   /* For Czech, Slovak, Polish, Hungarian, Baltic langs*/
+  ksmVietnamese                  = 30,
+  ksmExtArabic                   = 31,   /* extended Arabic*/
+  ksmUninterp                    = 32    /* uninterpreted symbols, e.g. palette symbols*/
+};
 
 enum {
 	kNoMacLang   = 0xFFFF,
